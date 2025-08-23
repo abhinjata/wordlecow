@@ -1,23 +1,16 @@
 #!/bin/bash
 set -e
 
-# Where to install
-INSTALL_DIR="$HOME/.local/bin"
-mkdir -p "$INSTALL_DIR"
+# Path where we'll install the command
+INSTALL_DIR="/usr/local/bin"
+SCRIPT_NAME="wordlecow"
 
-# Download latest wordlecow.sh
-curl -fsSL https://raw.githubusercontent.com/abhinjata/wordlecow/main/script/wordlecow.sh -o "$INSTALL_DIR/wordlecow"
-chmod +x "$INSTALL_DIR/wordlecow"
+# Copy and rename script
+cp "$(dirname "$0")/../wordlecow.sh" "$INSTALL_DIR/$SCRIPT_NAME"
 
-# Check if cowsay exists
-if ! command -v cowsay >/dev/null 2>&1; then
-    echo "⚠️  cowsay not found. Please install it:"
-    echo "   - Debian/Ubuntu: sudo apt install cowsay"
-    echo "   - Fedora: sudo dnf install cowsay"
-    echo "   - Arch: sudo pacman -S cowsay"
-    echo "   - Termux: pkg install cowsay"
-fi
+# Make it executable
+chmod +x "$INSTALL_DIR/$SCRIPT_NAME"
 
 echo "✅ Installed WordleCow!"
-echo "   Run it with: wordlecow"
+echo "👉 Run it with: wordlecow"
 
