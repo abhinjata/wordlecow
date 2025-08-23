@@ -1,8 +1,17 @@
 #!/bin/bash
 
-# Copy the script from the script/ folder to /usr/local/bin as "worldecow"
-cp "$(dirname "$0")/wordlecow.sh" /usr/local/bin/worldecow
-chmod +x /usr/local/bin/worldecow
+set -e
+
+# Where to install
+INSTALL_DIR="$HOME/.local/bin"
+
+# Ensure the directory exists
+mkdir -p "$INSTALL_DIR"
+
+# Copy the script
+cp "$(dirname "$0")/wordlecow.sh" "$INSTALL_DIR/worldecow"
+chmod +x "$INSTALL_DIR/worldecow"
 
 echo "✅ Installed! Now you can run 'worldecow' from anywhere."
+echo "ℹ️ Make sure $HOME/.local/bin is in your PATH."
 
