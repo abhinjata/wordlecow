@@ -1,15 +1,17 @@
 #!/bin/bash
 set -e
 
-# Path where we'll install the command
-INSTALL_DIR="/usr/local/bin"
+INSTALL_DIR="$HOME/bin"
 SCRIPT_NAME="wordlecow"
 
-# Copy and rename script
+mkdir -p "$INSTALL_DIR"
 cp "$(dirname "$0")/../wordlecow.sh" "$INSTALL_DIR/$SCRIPT_NAME"
-
-# Make it executable
 chmod +x "$INSTALL_DIR/$SCRIPT_NAME"
+
+if ! echo "$PATH" | grep -q "$HOME/bin"; then
+    echo "⚠️ $HOME/bin is not in PATH. Add this to your shell config:"
+    echo 'set -U fish_user_paths $HOME/bin $fish_user_paths'
+fi
 
 echo "✅ Installed WordleCow!"
 echo "👉 Run it with: wordlecow"
