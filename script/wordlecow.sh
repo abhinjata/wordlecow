@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Word list (more random techy/CS words)
 WORDS=("RUGBY" "HOCKY" "SKATE" "BOXER" \
        "RACES" "SWIMS" "SKIER" "DIVES" "ROWER" "FENCE" \
        "CHESS" "CARDS" "CHECK" "LOTTO" "BINGO" "TABOO" \
@@ -25,7 +24,6 @@ while true; do
         continue
     fi
 
-    # Check guess
     RESULT=""
     MATCH_FOUND=false
     for ((i=0; i<5; i++)); do
@@ -44,14 +42,12 @@ while true; do
         cowsay "MOO! You solved it: $SECRET"
         break
     fi
-
-    # Wrong attempt = no correct-position letters
+    
     if [ "$MATCH_FOUND" = false ]; then
         ((ATTEMPTS++))
         echo "❌ Wrong attempt: $ATTEMPTS/$MAX_ATTEMPTS"
     fi
 
-    # Reset if max wrong attempts reached
     if [ $ATTEMPTS -ge $MAX_ATTEMPTS ]; then
         cowsay "GAME OVER! The word was $SECRET. Resetting..."
         SECRET=${WORDS[$RANDOM % ${#WORDS[@]}]}
